@@ -27,7 +27,6 @@ phases:
       - echo $CODEBUILD_BUILD_NUMBER
       - echo Entered the build phase...
       - echo Build started on `date`
-      - aws ec2 describe-instances
     finally:
       - echo This always runs even if the install command fails
   post_build:

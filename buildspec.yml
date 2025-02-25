@@ -36,5 +36,4 @@ phases:
 artifact:
     files:
       - '**/*'
-      name:demo_app
       

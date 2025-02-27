@@ -1,39 +1,26 @@
 version: 0.2
 
-# Set an environment variable that can be used below in the build phases.
-# env is Optional
-env:
-  variables:
-    TEST_VAR: "t2.micro"
 phases:
-  install:
-    commands:
-      - echo Entered the install phase
-      # - apt-get update -y
-    # Commands specified in a finally block are run after commands in the commands block. The commands in a finally block are run even if a command in the commands block fails.
-    finally:
-      - echo This always runs even if the update or install command fails
-  pre_build:
-    commands:
-      - echo Entered the pre_build phase...
-    finally:
-      - echo This always runs even if the login command fails
-  build:
-    commands:
-      - ls -altr
-      - printenv
-      - echo $TEST_VAR
-      - echo $AWS_REGION
-      - echo $CODEBUILD_BUILD_NUMBER
-      - echo Entered the build phase...
-      - echo Build started on `date`
-    finally:
-      - echo This always runs even if the install command fails
-  post_build:
-    commands:
-      - echo Entered the post_build phase...
-      - echo Build completed on `date`
-artifact:
-    files:
-      - '**/*'
-      
+    install:
+        commands:
+            - echo "installing something"
+    pre_build:
+        commands:
+            - echo "we are in the pre build phase"
+            - printenv
+    build:
+        commands:
+            - echo "this is build section inside buildspec.yml file"
+            - echo "we will run some tests"
+    post_build:
+        commands:
+            - echo "we are in the post build phase"
+            - echo "we are in the post build phase"
+
+# artifacts/files : Required sequence.
+# Represents the locations that contain the build output artifacts in the build environment. Contains a sequence of separate location paths where CodeBuild can find build output artifacts.
+artifacts:
+  files:
+    - '**/*'
+
+# '**/*' represents all files recursively
